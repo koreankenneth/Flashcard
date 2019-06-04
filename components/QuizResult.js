@@ -7,13 +7,23 @@ class QuizResult extends Component {
 
   render() {
 
-    const { correctAnswerCount, count } = this.props.navigation.state.params
+    const { correctAnswerCount, count, title } = this.props.navigation.state.params
 
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Result</Text>
         <Text style={styles.body}>{correctAnswerCount} out of {count}</Text>
         <Text style={styles.body}>{Math.round(correctAnswerCount/count*100)}%</Text>
+        <TextButton
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate(
+            'Quiz',
+            {
+              titie: title,
+            }
+          )}>
+          Restart Quiz
+        </TextButton>
         <TextButton
           style={styles.button}
           onPress={() => this.props.navigation.navigate(
@@ -53,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   button: {
-    marginTop: 70,
+    marginTop: 30,
     fontSize: 16,
   },
 })

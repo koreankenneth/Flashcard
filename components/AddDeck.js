@@ -12,12 +12,18 @@ class AddDeck extends Component {
 
   submitDeck = () => {
     const { dispatch } = this.props
-    const deck = formatDeck(this.state.text)
+    const title = this.state.text
+    const deck = formatDeck(title)
 
     this.setState({ text: null })
 
     dispatch(addDeck(deck))
-    this.props.navigation.dispatch(NavigationActions.back())
+    this.props.navigation.navigate(
+      'DeckMain',
+      {
+        title: title
+      }
+    )
     submitDeck(deck)
   }
 

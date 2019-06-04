@@ -22,7 +22,6 @@ class DeckMain extends Component {
   render() {
     const { title } = this.props.navigation.state.params 
     const { decks } = this.props
-
     if (!decks[title]) {
       return <AppLoading />
     }

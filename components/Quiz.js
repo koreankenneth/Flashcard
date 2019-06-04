@@ -21,6 +21,7 @@ class Quiz extends Component {
 
   submitAnswer = (isCorrect) => {
     const { index, deck, correctAnswerCount, count } = this.state
+    const { title } = this.props.navigation.state.params
     let nextQuizNo = index + 1
     let score = correctAnswerCount
 
@@ -34,8 +35,14 @@ class Quiz extends Component {
         {
           correctAnswerCount: score,
           count: count,
+          title: title,
         }
       )
+      this.setState({
+        index: 0,
+        correctAnswerCount: 0,
+        isFlipped: false
+      })
       return
     }
 
@@ -48,6 +55,7 @@ class Quiz extends Component {
   render() {
     const { title } = this.props.navigation.state.params
     const { index, count } = this.state
+
     const deck = this.props.decks[title]
     if (count === 0) {
       return (
